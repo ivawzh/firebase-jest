@@ -14,9 +14,7 @@
     "babel-runtime": "^6.11.6",
     "jest": "^16.0.2"
   },
-  "jest": {
-    "testEnvironment": "node"
-  },
+  "jest": {},
   "dependencies": {
     "firebase": "^3.5.1"
   },
