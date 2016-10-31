@@ -1,17 +1,18 @@
 import firebase from 'firebase'
-import env from './env'
+import env from '../env'
 
 const appName = 'dummyApp'
-const rootRef = '/test/default-user'
 
-export default function initStore(): firebase.database.Reference {
-  let app: firebase.app.app
+firebase.database.enableLogging(false)
+
+export default function initStore() {
+  let app
   try {
     app = firebase.app(appName)
-  } catch (initializedError) {
+  } catch (notExistError) {
     app = firebase.initializeApp(env.secret, appName)
   }
-  const Database: firebase.database.Database = app.database()
-  const store: firebase.database.Reference = Database.ref(rootRef)
+  const database = app.database()
+  const store = database.ref(env.rootRef)
   return store
 }

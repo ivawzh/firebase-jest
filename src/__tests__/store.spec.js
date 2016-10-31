@@ -1,5 +1,4 @@
 import initStore from '../store'
-import env from '../env'
 
 describe('store', () => {
   let store
@@ -7,19 +6,19 @@ describe('store', () => {
     store = initStore()
   })
 
-  describe('.set()', () => {
+  describe('.set', () => {
     beforeEach(async () => {
       await store.remove()
     })
 
-    it('add data to the path', async () => {
+    it('adds data to the path', async () => {
       await store.set({hello: 'world'})
       const data = await store.once('value')
       expect(data.val()).toEqual({hello: 'world'})
     })
   })
 
-  describe('.remove()', () => {
+  describe('.remove', () => {
     it('deletes all data', async () => {
       await store.push({hello: 'world'})
       await store.remove()
