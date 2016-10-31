@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/jest --no-cache"
+    "test": "./node_modules/.bin/jest --no-cache",
+    "mocha": "./node_modules/.bin/mocha src/**/__tests__/**/*.mocha.js --compilers js:babel-register --full-trace"
   },
   "author": "",
   "license": "ISC",
@@ -14,10 +15,16 @@
     "babel-plugin-transform-runtime": "^6.15.0",
     "babel-preset-latest": "^6.16.0",
     "babel-runtime": "^6.11.6",
-    "jest": "^16.0.2"
+    "chai": "^3.5.0",
+    "jest": "^16.0.2",
+    "mocha": "^3.1.2"
   },
   "jest": {
-    "verbose": true
+    "verbose": true,
+    "rootDir": "",
+    "testPathDirs": ["<rootDir>/src/"],
+    "testRegex": ".*/__tests__/.*\\.jest\\.js$",
+    "notify": true
   },
   "dependencies": {
     "firebase": "^3.5.1"

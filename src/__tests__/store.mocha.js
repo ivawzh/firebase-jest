@@ -1,0 +1,32 @@
+import initStore from '../store'
+import { expect } from 'chai'
+
+describe('store', () => {
+  let store
+  beforeEach(() => {
+    store = initStore()
+  })
+
+  describe('.set', () => {
+    beforeEach(async () => {
+      await store.remove()
+    })
+
+    it('adds data to the path', async () => {
+      await store.set({hello: 'world'})
+      const data = await store.once('value')
+      expect(data.val()).to.eql({hello: 'world'})
+    })
+  })
+
+  describe('.remove', () => {
+    it('deletes all data', async () => {
+      await store.push({hello: 'world'})
+      await store.remove()
+      const snap = await store.once('value')
+      expect(snap.val()).to.eql(null)
+      expect(snap.exists()).to.eq(false)
+    })
+  })
+})
+
